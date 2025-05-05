@@ -25,6 +25,7 @@ function gObjectBomb(scene, x, y){
     sprite = bombs.get(x, y, "sp_asset");
     sprite.setCollideWorldBounds(true);
     sprite.setScale(1);
+    sprite.body.setSize(16,16).setOffset(0,0);
 
     this.gameobject = sprite;
     sprite.anims.play('bomb',true);   
@@ -86,6 +87,7 @@ function gObjectBomb(scene, x, y){
           const f = fires.get(x, y, "sp_asset");
           f.setScale(1);
           f.setPushable(false);
+          f.setSize(10,10).setOffset(3,3);
           f.anims.play(c);
           f.on(Phaser.Animations.Events.ANIMATION_COMPLETE, ()=>{
             f.destroy();
