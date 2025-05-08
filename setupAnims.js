@@ -69,38 +69,12 @@ function setupAnims(scene){
         frames: scene.anims.generateFrameNumbers('sp_asset', { start: 111, end: 113 }),
         frameRate: 8, repeat: -1
     });
-    scene.anims.create({ key: 'push_left_e',
-        frames: scene.anims.generateFrameNumbers('sp_asset', { start: 18, end: 19 }),
+
+    scene.anims.create({ key: 'wisp_e',
+        frames: scene.anims.generateFrameNumbers('sp_asset', { frames:[120, 121, 122, 123]}),
         frameRate: 8, repeat: -1
     });
-    scene.anims.create({ key: 'push_right_e',
-        frames: scene.anims.generateFrameNumbers('sp_asset', { start: 22, end: 23 }),
-        frameRate: 8, repeat: -1
-    });
-    scene.anims.create({ key: 'push_up_e',
-        frames: scene.anims.generateFrameNumbers('sp_asset', { start: 20, end: 21 }),
-        frameRate: 8, repeat: -1
-    });
-    scene.anims.create({ key: 'push_down_e',
-        frames: scene.anims.generateFrameNumbers('sp_asset', { start: 16, end: 17 }),
-        frameRate: 8, repeat: -1
-    });
-    scene.anims.create({ key: 'press_left_e',
-        frames: scene.anims.generateFrameNumbers('sp_asset', { start: 34, end: 35 }),
-        frameRate: 8, repeat: -1
-    });
-    scene.anims.create({ key: 'press_right_e',
-        frames: scene.anims.generateFrameNumbers('sp_asset', { start: 38, end: 39 }),
-        frameRate: 8, repeat: -1
-    });
-    scene.anims.create({ key: 'press_up_e',
-        frames: scene.anims.generateFrameNumbers('sp_asset', { start: 36, end: 37 }),
-        frameRate: 8, repeat: -1
-    });
-    scene.anims.create({ key: 'press_down_e',
-        frames: scene.anims.generateFrameNumbers('sp_asset', { start: 32, end: 33 }),
-        frameRate: 8, repeat: -1
-    });
+
     scene.anims.create({ key: 'popup_e',
         frames: scene.anims.generateFrameNumbers('sp_asset', { start: 0, end: 5 }),
         frameRate: 3, repeat: 0

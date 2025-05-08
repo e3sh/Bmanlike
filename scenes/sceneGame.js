@@ -339,6 +339,12 @@ class GameScene extends Phaser.Scene {
         this.wp.push(w);
       }
 
+      const w = new gObjectEnemyWp(this, 0, 0);
+      w.gameobject.deadstate = true;
+      w.gameobject.BONUSreceived = true;
+      w.gameobject.setVisible(false);
+      this.wp.push(w);
+
       this.scene.launch("UI");
       this.scene.launch("Debug");
 

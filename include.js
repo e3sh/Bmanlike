@@ -21,6 +21,7 @@ const w = [
     //"objCursor.js",
     //"objEnemy.js",
     "objEnemyTr.js",
+    "objEnemyWp.js",
     "objBomb.js",
     //"mazemake.js",
     //"routecheck.js",
