@@ -1,4 +1,4 @@
-function gObjectEnemyTr(scene, x, y){
+function gObjectEnemyRd(scene, x, y){
 
   let sprite;
   this.gameobject;

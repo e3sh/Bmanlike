@@ -121,7 +121,7 @@ class GameScene extends Phaser.Scene {
       //this.dangeon =  new Dangeon(MAP_W, MAP_H);
       //this.dangeon.create(); 
 
-      this.physics.world.setBounds(16, 16, (MAP_W-2)*16, (MAP_H-2)*16);
+      this.physics.world.setBounds(0, 0, (MAP_W-1)*16, (MAP_H-1)*16);
 
       //game object physics.sprite.body setup
       this.friends = this.physics.add.group();
@@ -332,18 +332,25 @@ class GameScene extends Phaser.Scene {
    
 
       for (let i=0; i<this.GAMECONFIG.ENEMY.INITCOUNT; i++){
-        const w = new gObjectEnemyTr(this, 0, 0);
+        const w = new gObjectEnemyRd(this, 0, 0);
         w.gameobject.deadstate = true;
         w.gameobject.BONUSreceived = true;
         w.gameobject.setVisible(false);
         this.wp.push(w);
       }
 
-      const w = new gObjectEnemyWp(this, 0, 0);
+      const w = new gObjectEnemyRt(this, 0, 0);
       w.gameobject.deadstate = true;
       w.gameobject.BONUSreceived = true;
       w.gameobject.setVisible(false);
       this.wp.push(w);
+
+      const w2 = new gObjectEnemyWp(this, 0, 0);
+      w2.gameobject.deadstate = true;
+      w2.gameobject.BONUSreceived = true;
+      w2.gameobject.setVisible(false);
+      this.wp.push(w2);
+
 
       this.scene.launch("UI");
       this.scene.launch("Debug");
@@ -471,7 +478,7 @@ class GameScene extends Phaser.Scene {
           this.seffect[3].play();
           this.events.emit("wavec");
           //if (this.wave > 3){
-            const w = new gObjectEnemyTr(this, 0, 0);
+            const w = new gObjectEnemyRd(this, 0, 0);
             w.gameobject.deadstate = true;
             w.BONUSreceived = true;
             w.gameobject.setVisible(false);

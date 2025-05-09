@@ -1,4 +1,4 @@
-function gObjectEnemyWp(scene, x, y){
+function gObjectEnemyRt(scene, x, y){
 
   let sprite;
   this.gameobject;
@@ -11,6 +11,8 @@ function gObjectEnemyWp(scene, x, y){
   let effcts = scene.effcts;
 
   let BG = scene.maze.BG;
+
+  let seffect;
 
   let growcount;
 
@@ -102,28 +104,27 @@ function gObjectEnemyWp(scene, x, y){
       }
 
       let turnf = false;
-      let tmode = ( (((sprite.x-8)%16)<3) && ((sprite.y-8)%16)<3);
-
-      const gtf = layer.getTileAtWorldXY(
-        sprite.x + htbl[moveparam.v].vx*9 , 
-        sprite.y + htbl[moveparam.v].vy*9
-      );
-      const gtl = layer.getTileAtWorldXY(
-        sprite.x + htbl[(moveparam.v+3)%4].vx*9, 
-        sprite.y + htbl[(moveparam.v+3)%4].vy*9
-      );
-      const gtr = layer.getTileAtWorldXY(
-        sprite.x + htbl[(moveparam.v+1)%4].vx*9, 
-        sprite.y + htbl[(moveparam.v+1)%4].vy*9
-      );
-
-      const ff = (gtf.index != BG.FLOOR)?true:false; 
-      const fl = (gtl.index != BG.FLOOR)?true:false; 
-      const fr = (gtr.index != BG.FLOOR)?true:false; 
-
-      let vv = 0;
-
+      //if ((((sprite.x-8)%16)<1) && (((sprite.y-8)%16)<1)){
       if (growcount > 30){
+        const gtf = layer.getTileAtWorldXY(
+          sprite.x + htbl[moveparam.v].vx*9 , 
+          sprite.y + htbl[moveparam.v].vy*9
+        );
+        const gtl = layer.getTileAtWorldXY(
+          sprite.x + htbl[(moveparam.v+3)%4].vx*9, 
+          sprite.y + htbl[(moveparam.v+3)%4].vy*9
+        );
+        const gtr = layer.getTileAtWorldXY(
+          sprite.x + htbl[(moveparam.v+1)%4].vx*9, 
+          sprite.y + htbl[(moveparam.v+1)%4].vy*9
+        );
+
+        const ff = (gtf.index != BG.FLOOR)?true:false; 
+        const fl = (gtl.index != BG.FLOOR)?true:false; 
+        const fr = (gtr.index != BG.FLOOR)?true:false; 
+
+        let vv = 0;
+        //if (ff && fl && fr) vv = 2;
         if (ff){
           if (fl){
             vv = (fr)? 2:1;
@@ -132,31 +133,19 @@ function gObjectEnemyWp(scene, x, y){
             //vv = (fr)?-1:Phaser.Math.Between(1,3); 
           }
         }
-      }
 
-      if (tmode && moveparam.ct < game.getTime()){
-        if (tmode){
-          if (!fl){
-            moveparam.ct = game.getTime() + 500;
-            vv = -1;
-            //turnf = true;
-          }else{
-            if (!ff && !fr && !fl){ vv=0;}
-            //moveparam.ct = game.getTime() + 10;
-            //vv = 0;
-            //turnf = true;
-          }
-        }
-      }
+        //if (moveparam.ct < game.getTime()){
+          //moveparam.ct = game.getTime() + 1200;
+          moveparam.v = (moveparam.v+vv+4)%4;
+          //console.log("f:" + ff + "l:" + fl + "r:" + fr + "v:"+vv + "movep.v:" + moveparam.v);
+          growcount -= 30;
+        //}
 
-      if (vv !=0){  
-        moveparam.v = (moveparam.v+vv+4)%4;
-        growcount -= 30;
-
-        turnf = true;
+        if (vv !=0) turnf = true;
       }
     
       if (turnf){
+        //moveparam.v = (moveparam.v+3)%4;
         moveparam.vx = htbl[moveparam.v].vx;
         moveparam.vy = htbl[moveparam.v].vy;
         //sprite.setTint("0xff00000");
@@ -170,13 +159,13 @@ function gObjectEnemyWp(scene, x, y){
       
     }
     if (moveparam.exc){
-      if (moveparam.vx != 0) sprite.setVelocityX(moveparam.vx*50);
-      if (moveparam.vy != 0) sprite.setVelocityY(moveparam.vy*50);
-      //sprite.setVelocityX(moveparam.vx*50);
-      //sprite.setVelocityY(moveparam.vy*50);
+      //if (moveparam.vx != 0) sprite.setVelocityX(moveparam.vx*30);
+      //if (moveparam.vy != 0) sprite.setVelocityY(moveparam.vy*30);
+      sprite.setVelocityX(moveparam.vx*50);
+      sprite.setVelocityY(moveparam.vy*50);
       moveparam.exc = false;  
       //const an = ["right_p","down_p","left_p","up_p"];
-      //sprite.anims.play( htbl[moveparam.v].anm,true);  
+      sprite.anims.play( htbl[moveparam.v].anm,true);  
 
     }else{
       sprite.setVelocityX(0);
