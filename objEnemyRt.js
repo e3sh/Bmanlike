@@ -132,6 +132,8 @@ function gObjectEnemyRt(scene, x, y){
             vv = -1;
             //vv = (fr)?-1:Phaser.Math.Between(1,3); 
           }
+        }else{
+          if (fl && fr) vv = 2;
         }
 
         //if (moveparam.ct < game.getTime()){

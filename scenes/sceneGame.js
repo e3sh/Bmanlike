@@ -243,7 +243,7 @@ class GameScene extends Phaser.Scene {
       //this.physics.add.overlap(this.fires, this.layer, (f, l)=>{f.destroy(); },null, this);
       this.physics.add.overlap(this.fires, this.bombs, (f, b)=>{b.bombexp = true;},null, this);
 
-      this.physics.add.collider(this.mobs, this.mobs);
+      //this.physics.add.collider(this.mobs, this.mobs);
       this.physics.add.collider(this.mobs, this.layer);
 
       const hitblock = (p, b)=>{
