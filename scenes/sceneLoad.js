@@ -4,6 +4,8 @@ class loadScene extends Phaser.Scene {
     super({key:"Load", active:true});
   }
 
+  text;
+
   preload() {
     this.load.image("bg_asset", "assets/Bomberman.png");
     this.load.image('ascfont', 'assets/aschr.png');
@@ -58,11 +60,42 @@ class loadScene extends Phaser.Scene {
 
     setupAnims( this );
 
-    this.add.text(0, 0, 'Loading...', { fontSize: '16px', fill: '#FFF' });
+    //this.text = this.add.text(16, 16, 'Loading...', { fontSize: '16px', fill: '#FFF' });
+    //this.text.setVisible(true);
   }
 
   update() {
-    //this.scene.start("GameMain");
-    this.scene.start("Title");
+    this.scene.start("Splash");
+  }
+}
+
+//Splash Scene
+class SplashScene extends Phaser.Scene {
+  constructor() {
+    super({key:"Splash", active:false});
+  }
+
+  sptext;
+
+  preload() {
+  }
+
+  create() {
+    this.sptext = this.add.text(16, 16, 'LOGO etc...', { fontSize: '16px', fill: '#FFF' });
+
+    this.cameras.main.fadeIn(1000, 0, 0, 0);
+    this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_IN_COMPLETE, () => {
+      //this.scene.start("Title");
+      this.cameras.main.fadeOut(500, 0, 0, 0);
+    });
+    this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
+      this.scene.start("Title");
+    });
+  }
+
+  update() {
+    this.sptext.setText('Opening LOGO (time ' + Math.trunc(game.getTime()) + " ms)");//+ Math.trunc(game.getTime()/50));
+    //if (game.getTime() > 10000)
+    //this.scene.start("Title");
   }
 }

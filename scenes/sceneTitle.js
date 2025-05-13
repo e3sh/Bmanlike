@@ -48,9 +48,12 @@ class TitleScene extends Phaser.Scene {
     this.cursors = this.input.keyboard.createCursorKeys();
 
     this.startf = false;
+
+    this.cameras.main.fadeIn(240, 0, 0, 0);
   }
 
   update() {
+
     if (this.cursors.space.isDown && !this.startf) {
       this.starttext.setText("= Wait a morment =");
       this.startf = true;

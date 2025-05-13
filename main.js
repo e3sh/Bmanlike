@@ -17,6 +17,7 @@ const config = {
     },
     scene: [
         loadScene,
+        SplashScene,
         inputScene,
         TitleScene,
         GameScene,
